@@ -1,5 +1,5 @@
-from flask_app.app import create_app
-from flask_app import settings
+from gae_app.app import create_app
+from gae_app import settings
 from werkzeug import DebuggedApplication
 
 
