@@ -1,5 +1,5 @@
 from flask import Flask
-from gae_app import urls
+from application import urls
 
 
 def register_blueprints(app):

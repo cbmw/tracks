@@ -1,5 +1,5 @@
-from gae_app.app import create_app
-from gae_app import settings
+from application.app import create_app
+from application import settings
 from werkzeug import DebuggedApplication
 
 

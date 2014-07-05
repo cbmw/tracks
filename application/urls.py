@@ -1,5 +1,5 @@
-from gae_app.tracks.handlers.user import CurrentUser
-from gae_app.tracks.handlers.main import MainView
+from application.tracks.handlers.user import CurrentUser
+from application.tracks.handlers.main import MainView
 from flask import Blueprint
 
 
