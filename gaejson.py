@@ -3,7 +3,10 @@ from google.appengine.api.users import User
 
 
 def user_encoder(obj):
-    return [obj.user_id(), obj.email()]
+    return {'id': obj.user_id(),
+            'email': obj.email(),
+            'auth_domain': obj.auth_domain(),
+            'nickname': obj.nickname()}
 
 
 GAE_TYPE_ENCODER = {
