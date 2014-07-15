@@ -1,0 +1,11 @@
+.btn-login {
+    padding: 6px 12px !important;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: #ffffff !important;
+}
+
+a.btn-login:hover {
+    background-color: #D43F3A !important;
+}
+

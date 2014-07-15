@@ -1,9 +1,9 @@
-from application.app import create_app
+from application.app import app_factory
 from application import settings
+from flask.ext.login import LoginManager
 from werkzeug import DebuggedApplication
 
-
-app = create_app(settings)
+app = app_factory(settings)
 
 if app.config['DEBUG']:
     app.debug = True
