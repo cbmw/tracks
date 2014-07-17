@@ -11,7 +11,7 @@ class User(UserMixin, ndb.Model):
     name = ndb.StringProperty()
 
     def get_id(self):
-        return self.key.id()
+        return unicode(self.key.id())
 
     @classmethod
     def create(cls, google_user):
