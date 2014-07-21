@@ -22,9 +22,9 @@ class User(UserMixin, ndb.Model):
     @classmethod
     def by_google(cls, google_user):
         '''Create User entity by Google User Api object'''
-        user = User(google_user=google_user, name=google_user.nickname())
+        user = User(google_user=google_user)
         user.name = google_user.nickname()
-        user.email
+        user.email = google_user.email()
         user.put()
         return user
 
