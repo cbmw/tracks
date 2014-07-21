@@ -17,9 +17,6 @@ class CurrentUser(MethodView):
 
 class UserLogout(MethodView):
     def get(self):
-        google_user = users.get_current_user()
-        if google_user:
-            return redirect(users.create_logout_url(url_for('tracks.logout')))
         if current_user.is_authenticated():
             logout_user()
         return redirect(url_for('tracks.main'))
