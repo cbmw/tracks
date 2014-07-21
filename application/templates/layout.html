@@ -67,7 +67,11 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav pull-right">
-                            <li><a type="link" class="btn btn-danger navbar-btn btn-login" href="{{login_url}}">Login with Google</a></li>
+                            {% if not current_user.is_authenticated() %}
+                            <li><a type="link" class="btn btn-danger navbar-btn btn-login" href="/login">Login with Google</a></li>
+                            {% else %}
+                            <li><a type="link" class="btn btn-danger navbar-btn btn-login" href="/logout">{{current_user.name}}</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
