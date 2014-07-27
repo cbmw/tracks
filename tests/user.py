@@ -1,11 +1,13 @@
 import unittest
 import sys
 import os
-import flaskr
+import json
 sys.path.append('/opt/google_appengine/')
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from google.appengine.datastore import datastore_stub_util
 from google.appengine.ext import testbed
+from application.app import app_factory
+from flask.ext.login import current_user
 # from google.appengine.api import users
 # from gaejson import GaeJSONEncoder
 # from application.models import User
@@ -13,7 +15,8 @@ from google.appengine.ext import testbed
 
 class UserTest(unittest.TestCase):
     def setUp(self):
-        self.app = flaskr.app.test_client()
+        self.app = app_factory()
+        self.client = self.app.test_client()
         self.testbed = testbed.Testbed()
         self.testbed.activate()
         self.testbed.init_user_stub()
@@ -33,6 +36,21 @@ class UserTest(unittest.TestCase):
 
     def tearDown(self):
         self.testbed.deactivate()
+
+    def testLogin(self):
+        self.client.get('/login')
+        rv = self.client.get('/api/user/current')
+        user = json.loads(rv.data)
+        self.assertEqual('test@example.com', user['email'])
+        self.assertEqual(1, user['id'])
+        self.assertEqual('123', user['google_user']['id'])
+
+    def testLogout(self):
+        self.testLogin()
+        res = self.client.get('/logout')
+        self.assertEqual(302, res.status_code)
+        res = self.client.get('/api/user/current')
+        self.assertEqual(302, res.status_code)
 
 
 if __name__ == '__main__':
