@@ -1,18 +1,18 @@
 import json
 from application.models import User
 from flask import redirect, url_for
-from flask.ext.login import login_user, current_user, logout_user
+from flask.ext.login import (login_user, current_user, logout_user,
+                             login_required)
 from flask.views import MethodView
 from google.appengine.api import users
 from gaejson import GaeJSONEncoder
 
 
 class CurrentUser(MethodView):
+    @login_required
     def get(self):
-        print(current_user)
-        user = users.get_current_user()
-        if user:
-            return json.dumps(user, cls=GaeJSONEncoder)
+        if current_user:
+            return json.dumps(current_user, cls=GaeJSONEncoder)
 
 
 class UserLogout(MethodView):

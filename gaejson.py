@@ -1,5 +1,6 @@
 import datetime
 import json
+import types
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
@@ -21,7 +22,10 @@ class GaeJSONEncoder(json.JSONEncoder):
 
     def _model_encoder(obj):
         '''google.appengine.ext.ndb.Model and subclasses encoder'''
-        return obj.to_dict()
+        obj_dict = obj.to_dict()
+        obj_dict['kind'] = obj.key.kind()
+        obj_dict['id'] = obj.key.id()
+        return obj_dict
 
     encoders = {
         users.User: _user_encoder,
