@@ -8,9 +8,6 @@ from google.appengine.datastore import datastore_stub_util
 from google.appengine.ext import testbed
 from application.app import app_factory
 from flask.ext.login import current_user
-# from google.appengine.api import users
-# from gaejson import GaeJSONEncoder
-# from application.models import User
 
 
 class UserTest(unittest.TestCase):

@@ -9,6 +9,7 @@ login_manager = LoginManager()
 def register_blueprints(app):
     from application import urls
     app.register_blueprint(urls.tracks)
+    app.register_blueprint(urls.api)
 
 
 def app_factory(config=settings):

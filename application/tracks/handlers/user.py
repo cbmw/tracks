@@ -8,13 +8,6 @@ from google.appengine.api import users
 from gaejson import GaeJSONEncoder
 
 
-class CurrentUser(MethodView):
-    @login_required
-    def get(self):
-        if current_user:
-            return json.dumps(current_user, cls=GaeJSONEncoder)
-
-
 class UserLogout(MethodView):
     def get(self):
         if current_user.is_authenticated():
